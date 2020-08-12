@@ -1,0 +1,19 @@
+from django.shortcuts import render, redirect
+from django.contrib import messages
+from .forms import UserRegisterForm
+
+
+def register(request):
+	if request.method == 'POST': # Checks if the form data are POST data when we submit. [datum--data]
+		form = UserRegisterForm(request.POST) # If it is, then runs form = ......(request.POST)
+		if form.is_valid():
+			form.save()																												
+			username = form.cleaned_data.get('username')
+			messages.success(request, f'Thank you, {username}! Your account has been created! You are now able to log in.')
+			return redirect('login')
+
+	else:
+		form = UserRegisterForm()
+	return render(request, 'accounts/register.html', {'form': form})
+
+

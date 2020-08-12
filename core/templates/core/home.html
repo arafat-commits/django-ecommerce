@@ -1,0 +1,173 @@
+{% extends "base.html" %}
+{% block extra_head %}
+  <style>
+
+    i {
+      color: white;
+    }
+
+    i:hover {
+      color: red;
+    }
+
+    .site-header {
+      margin-bottom: 90px;
+    }
+
+    .site-header .navbar-expand-md {
+      height: 85px;
+      background: black;
+    }
+
+    .site-header .navbar-brand {
+      padding: 7px 7px;
+      color: chartreuse;
+      font-size: 25px;
+      font-style: italic;
+    }
+
+    .site-header .navbar-brand:hover {
+      background: green;
+      color: white;
+    }
+
+    .site-header .navbar-nav .nav-link {
+      color: yellow;
+      font-weight: bold;
+    }
+
+    .site-header .navbar-nav .nav-link:hover {
+      color: red;
+    }
+
+    .badge-danger {
+      color: white;
+      background-color: red;
+    }
+
+    .btn-primary {
+      color: white;
+      background: green;
+      border: 3px solid black;
+    }
+
+    .btn-primary:hover {
+      color: red;
+      background: black;
+      border: 3px solid black;
+    }
+
+    .search {
+        margin-top: 12px; 
+        margin-right: 120px;
+      }
+
+    .cart {
+      margin-right: 150px;
+    }
+
+    .card {
+      background: #eee8ae;
+    }
+
+    .card-img-top {
+      width: 100%;
+      height:400px;
+    }
+
+    .fa {
+      padding: 14px;
+      font-size: 17px;
+      width: 45px;
+      text-align: center;
+      text-decoration: none;
+      border-radius: 50%;
+    }
+
+    .fa-facebook {
+      background: #3B5998;
+      color:white;
+    }
+
+    .fa-twitter {
+      background: #55ACEE;
+      color: white;
+      margin-left: 2px;
+    }
+
+    .footer-section {
+      margin-bottom: 0px;
+      width: 100%;
+      padding: 50px;
+      background: black;
+      text-align: center;
+      color: white;
+      font-style: italic;
+    }
+
+  </style>
+{% endblock %}
+
+
+  {% block content %}
+      <div class="mb-4">
+        <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+          <div class="carousel-inner">
+              <div class="carousel-item active">
+                <img src="/media/slider-1.jpg" class="d-block w-100" height="500">
+              </div>
+              <div class="carousel-item">
+                <img src="/media/slider-2.jpg" class="d-block w-100" height="500">
+              </div>
+              <div class="carousel-item">
+                <img src="/media/slider-3.jpg" class="d-block w-100" height="500">
+              </div>
+              <div class="carousel-item">
+                <img src="/media/slider-4.jpg" class="d-block w-100" height="500">
+              </div>
+              <div class="carousel-item">
+                <img src="/media/slider-5.jpg" class="d-block w-100" height="500">
+              </div>
+              <div class="carousel-item">
+                <img src="/media/slider-6.jpg" class="d-block w-100" height="500">
+              </div>
+              <div class="carousel-item">
+                <img src="/media/slider-7.jpg" class="d-block w-100" height="500">
+              </div>
+              <div class="carousel-item">
+                <img src="/media/slider-8.jpg" class="d-block w-100" height="500">
+              </div>
+          </div>
+      </div>
+    </div>
+
+        <div class="row">
+          {% for item in items %}
+          <div class="col-md-6 mb-3">
+            <div class="card">
+                <img src="/media/{{ item.image }}" class="card-img-top mb-2">
+              <div class="card-body text-center">
+                <h6><em>{{ item.category }}</em></h6>    
+                  <h5 class="font-weight-bold">
+                    <strong>
+                      <a href="{{ item.get_absolute_url }}" style="text-decoration: none">{{ item.title }}
+                        <span class="badge badge-pill badge-danger">NEW</span>
+                      </a>
+                    </strong>
+                  </h5>               
+                    <h4 class="font-weight-bold">
+                      <strong>$
+                        {% if item.discount_price %}
+                            {{ item.discount_price }}
+                        {% else %}
+                            {{ item.price }}
+                        {% endif %}
+                      </strong>
+                  </h4>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+      </div>
+  {% endblock content %}
+  
